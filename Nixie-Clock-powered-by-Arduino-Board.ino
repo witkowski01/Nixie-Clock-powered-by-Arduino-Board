@@ -41,8 +41,8 @@ void setup()
 
   // The following lines can be uncommented to set the date and time
   // rtc.setDOW(WEDNESDAY);     // Set Day-of-Week to SUNDAY
-  // rtc.setTime(12, 0, 0);     // Set the time to 12:00:00 (24hr format)
-  // rtc.setDate(1, 1, 2014);   // Set the date to January 1st, 2014
+  // rtc.setTime(20, 06, 50);     // Set the time to 12:00:00 (24hr format)
+  // rtc.setDate(7, 3, 2018);   // Set the date to January 1st, 2014
 }
 
 void loop()
@@ -57,7 +57,33 @@ void loop()
 
   // Send time
   Serial.println(rtc.getTimeStr());
+  String timeStr = rtc.getTimeStr();
+  String timeStr100000 = String(timeStr[0]);
+  String timeStr010000 = String(timeStr[1]);
+  String timeStr001000 = String(timeStr[3]);
+  String timeStr000100 = String(timeStr[4]);
+  String timeStr000010 = String(timeStr[6]);
+  String timeStr000001 = String(timeStr[7]);
 
+  int timeInt100000 = timeStr100000.toInt();
+  int timeInt010000 = timeStr010000.toInt();
+  int timeInt001000 = timeStr001000.toInt();
+  int timeInt000100 = timeStr000100.toInt();
+  int timeInt000010 = timeStr000010.toInt();
+  int timeInt000001 = timeStr000001.toInt();
+  
+  Serial.println(timeInt100000);
+  Serial.println(timeInt010000);
+  Serial.println(timeInt001000);
+  Serial.println(timeInt000100);
+  Serial.println(timeInt000010);
+  Serial.println(timeInt000001);
+setNixie(0,timeInt000001);
+setNixie(1,timeInt000010);
+setNixie(2,timeInt000100);
+setNixie(3,timeInt001000);
+setNixie(4,timeInt010000);
+setNixie(5,timeInt100000);
   // Wait one second before repeating :)
   delay (1000);
 }
